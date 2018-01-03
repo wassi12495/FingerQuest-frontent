@@ -13,33 +13,33 @@ class EventListener{
 
   static keysPressed(e){
     keys[e.key] = true
-    e.preventDefault()
+    // e.preventDefault()
     console.log(keys)
-    EventListener.doKeys()
+    //EventListener.doKeys()
   }
 
   static keysReleased(e){
     keys[e.key] = false
-    e.preventDefault()
+    // e.preventDefault()
     console.log(keys)
-    EventListener.doKeys()
+    //EventListener.doKeys()
 
   }
 
   static doKeys(){
 
     if(keys["ArrowLeft"] && keys[" "]){
-      Player.movePlayerLeft()
       Player.shoot()
+      Player.movePlayer(Player.movePlayerLeft)
     }
 
     if(keys["ArrowRight"] && keys[" "]){
-      Player.movePlayerRight()
       Player.shoot()
+      Player.movePlayer(Player.movePlayerRight)
     }
 
     if(keys["ArrowRight"]){
-      Player.movePlayerRight()
+      Player.movePlayer(Player.movePlayerRight)
         console.log("Method")
     }
 
@@ -56,7 +56,7 @@ class EventListener{
 
   static rightListener(){
     document.addEventListener('keydown', function(e){
-      e.preventDefault()
+      // e.preventDefault()
       const keyName = e.key;
 
       if (keyName === "ArrowRight") {
@@ -68,7 +68,7 @@ class EventListener{
 
   static leftListener(){
     document.addEventListener('keydown', function(e){
-      e.preventDefault()
+      // e.preventDefault()
       const keyName = e.key;
       if (keyName === "ArrowLeft") {
           console.log("Left")
@@ -79,7 +79,7 @@ class EventListener{
 
   static spaceListener(){
     document.addEventListener('keydown', function(e){
-      e.preventDefault()
+      // e.preventDefault()
       const keyName = e.key;
       if (keyName === " ") {
           console.log("Space")
