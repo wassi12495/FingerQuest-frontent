@@ -35,6 +35,7 @@ class Bullet {
     let BOX1 = document.getElementById('box1')
     let BOX2 = document.getElementById('box2')
     let BOX3 = document.getElementById('box3')
+    let BOSS = document.getElementById('boss')
     let bulletLeft = Bullet.positionToInteger(bullet.style.left)
     let bulletRight = Bullet.positionToInteger(bullet.style.left) + Bullet.positionToInteger(BULLETWIDTH)
 
@@ -50,6 +51,10 @@ class Bullet {
       var box3Left = BOX3.offsetLeft
       var box3Right = BOX3.offsetLeft + 100
     }
+    if (BOSS){
+      var bossLeft = BOSS.offsetLeft
+      var bossRight = BOSS.offsetLeft + BOSSWIDTH
+    }
 
     let boxBottom = 325
 
@@ -62,7 +67,11 @@ class Bullet {
         setTimeout(function () {
           bullet.remove()
           box1.remove()
-          Boss.appendBoss();
+
+          //remove other boxes
+          box2.remove()
+          box3.remove()
+          Boss.createBoss();
         }, 10);
     } else if (bulletLeft <= box2Left && bulletRight > box2Left && bottom >= 305||
       bulletLeft >= box2Left && bulletRight <= box2Right && bottom >= 305||
@@ -72,7 +81,12 @@ class Bullet {
         setTimeout(function () {
           bullet.remove()
           box2.remove()
-          Boss.appendBoss();
+
+          //remove other boxes
+          box1.remove()
+          box3.remove()
+          Boss.createBoss();
+
         }, 10);
     }else if (bulletLeft <= box3Left && bulletRight > box3Left && bottom >= 305||
       bulletLeft >= box3Left && bulletRight <= box3Right && bottom >= 305||
@@ -82,8 +96,25 @@ class Bullet {
         setTimeout(function () {
           bullet.remove()
           box3.remove()
+          //remove other boxes
+
+          box1.remove()
+          box2.remove()
+          Boss.createBoss();
         }, 10);
-    }
+    }else if (bulletLeft <= bossLeft && bulletRight > bossLeft && bottom >= BOSSBOTTOM||
+      bulletLeft >= bossLeft && bulletRight <= bossRight && bottom >= BOSSBOTTOM||
+      bulletLeft <= bossRight && bulletRight >= bossRight && bottom >= BOSSBOTTOM) {
+        console.log('Damnnnnnn third box hit')
+        clearInterval(bulletInterval)
+        setTimeout(function () {
+          bullet.remove()
+          alert("hit")
+          //remove other boxes
+        }, 10);
+      }
+
+
   }
 
   static positionToInteger(p) {

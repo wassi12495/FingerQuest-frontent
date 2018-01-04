@@ -7,7 +7,5 @@ class Item {
     this.id = json.id
     Item.all.push(this)
   }
-
-
 }
 Item.all = []

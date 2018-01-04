@@ -1,3 +1,5 @@
+PLAYERHEIGHT = 20
+PLAYERWIDTH = 40
 
 class Player{
 
@@ -10,12 +12,7 @@ class Player{
     var leftNumbers = PLAYER.style.left.replace('px','')
     var left = parseInt(leftNumbers, 10)
     PLAYER.style.left = `${left - 4}px`
-    // if (PLAYER.style.left > '0px' ){
-    //
-    // }
-    // else{
-    //   PLAYER.style.left = `${left}px`
-    // }
+
 
   }
 
