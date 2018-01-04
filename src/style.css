@@ -6,6 +6,8 @@
   overflow: hidden;
   position: relative;
   text-align: center;
+  display: inline-block;
+
 }
 
 #player {
@@ -15,10 +17,31 @@
   width: 40px;
 }
 
+#player-stats{
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+
+#boss-hp{
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+  vertical-align: top;
+}
+
 #boss{
   height: 70px;
   position: absolute;
   width:  90px;
+}
+
+#leaderboard{
+  background-color: white;
+  height: 200px;
+  width: 200px;
 }
 
 #box1 {

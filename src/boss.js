@@ -63,7 +63,24 @@ class Boss{
     const div = document.createElement('div');
     div.innerHTML = Boss.renderBoss();
     document.getElementById('game').appendChild(div);
+    const audioDiv = document.createElement('div');
+    audioDiv.innerHTML = '<audio  src="/Users/joshwasserman/Development/FingerQuest-project/Finger-Quest-Frontend/src/fingerquestmusic.mp3" autoplay></audio>';
+    document.getElementById('game').appendChild(audioDiv);
+
     Boss.moveBoss()
   }
 
+  static takeHit(){
+    const bossHealth = document.getElementById('boss-health')
+    Boss.health -= 1;
+    console.log(Boss.health);
+    bossHealth.innerHTML = `${Boss.health}`
+    if (Boss.health === 0) {
+      alert("My Hotline Blingin'");
+      Game.endGame();
+    }
+  }
+
 }
+
+Boss.health = 3;

@@ -30,12 +30,28 @@ class Player{
 
   }
   static shoot(){
-    console.log("shoot")
-    Bullet.createBulletDiv();
+    if (Player.ammo > 0) {
+      Bullet.createBulletDiv();
+      Player.ammo--
+      document.getElementById('player-ammo').innerHTML = `${Player.ammo}`;
+    } else {
+      document.getElementById('player-ammo').innerHTML = "You Bout to Die";
+    }
   }
 
-
-
-
-
+  static takeHit(){
+    const playerHealth = document.getElementById('player-health')
+    Player.health -= 1;
+    playerHealth.innerHTML = `${Player.health}`
+    if (Player.health === 0) {
+      alert("Damnnn You Suck");
+      Player.status = "loss";
+      Game.endGame();
+    }
+  }
 }
+
+Player.backpack = [];
+Player.health = 3;
+Player.ammo = 15;
+Player.status = ""

@@ -1,7 +1,16 @@
 BULLETWIDTH = '30px';
 BULLETHEIGHT = '30px';
-
+BULLETSARRAY = [];
+BULLETINTERVALS = [];
 class Bullet {
+
+  static clearBullets(){
+    BULLETSARRAY.forEach(bullet => bullet.remove());
+    BULLETSARRAY.length = 0;
+    BULLETINTERVALS.forEach(interval => clearInterval(interval));
+    BULLETINTERVALS.length = 0;
+  }
+
   static createBulletDiv(){
     const PLAYER = document.getElementById('player')
     const bullet = document.createElement('div')
@@ -11,6 +20,7 @@ class Bullet {
     bullet.style.left = PLAYER.style.left
     bullet.style.bottom = '30px'
     bullet.innerHTML = '<img src="https://cdn.shopify.com/s/files/1/1061/1924/files/Middle_Finger_Emoji.png?9898922749706957214" style="width: 100%; height: 100%">'
+    BULLETSARRAY.push(bullet);
     document.getElementById('game').appendChild(bullet)
 
     function moveBulletUp(){
@@ -25,7 +35,8 @@ class Bullet {
       }
       Bullet.checkCollision(bullet, bulletInterval);
     }
-    let bulletInterval = setInterval(moveBulletUp, 100)
+    let bulletInterval = setInterval(moveBulletUp, 100);
+    BULLETINTERVALS.push(bulletInterval);
   }
 
   static checkCollision(bullet, bulletInterval){
@@ -61,56 +72,59 @@ class Bullet {
     if (bulletLeft <= box1Left && bulletRight > box1Left && bottom >= 305||
       bulletLeft >= box1Left && bulletRight <= box1Right && bottom >= 305||
       bulletLeft <= box1Right && bulletRight >= box1Right && bottom >= 305){
-        console.log('Damnnnnnn first box hit')
-        // debugger
         clearInterval(bulletInterval)
         setTimeout(function () {
           bullet.remove()
-          box1.remove()
-
-          //remove other boxes
+          box1.innerHTML = Item.render();
           box2.remove()
           box3.remove()
-          Boss.createBoss();
+          Bullet.clearBullets();
+          setTimeout(function () {
+            alert(`${Player.backpack[Player.backpack.length - 1].name}! ${Player.backpack[Player.backpack.length - 1].description}`)
+            box1.remove();
+            Boss.createBoss();
+          }, 1000);
         }, 10);
+
     } else if (bulletLeft <= box2Left && bulletRight > box2Left && bottom >= 305||
       bulletLeft >= box2Left && bulletRight <= box2Right && bottom >= 305||
       bulletLeft <= box2Right && bulletRight >= box2Right && bottom >= 305) {
-        console.log('Damnnnnnn second box hit')
         clearInterval(bulletInterval)
         setTimeout(function () {
           bullet.remove()
-          box2.remove()
-
-          //remove other boxes
+          box2.innerHTML = Item.render();
           box1.remove()
           box3.remove()
-          Boss.createBoss();
-
+          Bullet.clearBullets();
+          setTimeout(function () {
+            alert(`${Player.backpack[Player.backpack.length - 1].name}! ${Player.backpack[Player.backpack.length - 1].description}`)
+            box2.remove();
+            Boss.createBoss();
+          }, 1000);
         }, 10);
     }else if (bulletLeft <= box3Left && bulletRight > box3Left && bottom >= 305||
       bulletLeft >= box3Left && bulletRight <= box3Right && bottom >= 305||
       bulletLeft <= box3Right && bulletRight >= box3Right && bottom >= 305) {
-        console.log('Damnnnnnn third box hit')
         clearInterval(bulletInterval)
         setTimeout(function () {
           bullet.remove()
-          box3.remove()
-          //remove other boxes
-
-          box1.remove()
-          box2.remove()
-          Boss.createBoss();
-        }, 10);
+          box3.innerHTML = Item.render();
+          box1.remove();
+          box2.remove();
+          Bullet.clearBullets();
+          setTimeout(function () {
+            alert(`${Player.backpack[Player.backpack.length - 1].name}! ${Player.backpack[Player.backpack.length - 1].description}`)
+            box3.remove();
+            Boss.createBoss();
+          }, 1000);
+          }, 10);
     }else if (bulletLeft <= bossLeft && bulletRight > bossLeft && bottom >= BOSSBOTTOM||
       bulletLeft >= bossLeft && bulletRight <= bossRight && bottom >= BOSSBOTTOM||
       bulletLeft <= bossRight && bulletRight >= bossRight && bottom >= BOSSBOTTOM) {
-        console.log('Damnnnnnn third box hit')
         clearInterval(bulletInterval)
         setTimeout(function () {
-          bullet.remove()
-          alert("hit")
-          //remove other boxes
+          bullet.remove();
+          Boss.takeHit();
         }, 10);
       }
 

@@ -11,7 +11,7 @@ class BossBullet {
     bossBullet.className = 'bossBullet'
     bossBullet.style.left = BOSS.style.left
     bossBullet.style.bottom = '470px'
-    bossBullet.innerHTML = '<img src="https://cdn.shopify.com/s/files/1/1061/1924/files/Middle_Finger_Emoji.png?9898922749706957214" style="width: 100%; height: 100%">'
+    bossBullet.innerHTML = '<img src="https://talksense.weebly.com/uploads/3/0/7/0/3070350/5385929_orig.png" style="width: 100%; height: 100%">'
     document.getElementById('game').appendChild(bossBullet)
 
     BOSSBULLETARRAY.push(bossBullet)
@@ -50,8 +50,7 @@ class BossBullet {
         clearInterval(bossBulletInterval)
         setTimeout(function () {
           bossBullet.remove()
-          alert("PLAYER HIT")
-
+          Player.takeHit();
         }, 10);
       }
 
