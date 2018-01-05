@@ -1,5 +1,7 @@
 PLAYERHEIGHT = 20
 PLAYERWIDTH = 40
+ALLOWSHOOT = true
+SHOOTSPEED = 800
 
 class Player{
 
@@ -11,7 +13,9 @@ class Player{
     const PLAYER = document.getElementById('player')
     var leftNumbers = PLAYER.style.left.replace('px','')
     var left = parseInt(leftNumbers, 10)
-    PLAYER.style.left = `${left - 4}px`
+    if(PLAYER.offsetLeft > 10){
+      PLAYER.style.left = `${left - 4}px`
+    }
 
 
   }
@@ -21,22 +25,27 @@ class Player{
 
     var leftNumbers = PLAYER.style.left.replace('px','')
     var left = parseInt(leftNumbers, 10)
-    PLAYER.style.left = `${left + 4}px`
-    if (PLAYER.style.left > '0px' ){
-    }
-    else{
-      PLAYER.style.left = `${left}px`
+    if(PLAYER.offsetLeft + PLAYERWIDTH < 690){
+      PLAYER.style.left = `${left + 4}px`
     }
 
   }
   static shoot(){
-    if (Player.ammo > 0) {
+
+    if (Player.ammo > 0 && ALLOWSHOOT) {
+
+      ALLOWSHOOT = false
+      setTimeout(function () {
+        ALLOWSHOOT = true
+      }, SHOOTSPEED);
       Bullet.createBulletDiv();
       Player.ammo--
       document.getElementById('player-ammo').innerHTML = `${Player.ammo}`;
-    } else {
+    } else if (Player.ammo === 0){
       document.getElementById('player-ammo').innerHTML = "You Bout to Die";
     }
+
+
   }
 
   static takeHit(){
@@ -48,6 +57,10 @@ class Player{
       Player.status = "loss";
       Game.endGame();
     }
+    
+
+
+    <source src="https://sound.peal.io/ps/audios/000/000/355/original/drake_4.mp3?1469744448" type="audio/mpeg">
   }
 }
 

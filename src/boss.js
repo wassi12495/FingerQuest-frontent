@@ -1,6 +1,7 @@
 let BOSSWIDTH = 90
 let BOSSBOTTOM = 500
 let BOSSDIRECTION = "left"
+let BOSSINTERVALS = []
 class Boss{
 
   static setDirection(){
@@ -24,6 +25,9 @@ class Boss{
   static moveBoss(){
     let bossInterval = setInterval(Boss.bossMovement, 70)
     let bossShootInterval = setInterval(Boss.bossShoot, 1500)
+    BOSSINTERVALS.push(bossInterval)
+    BOSSINTERVALS.push(bossShootInterval)
+
 
 
       // window.requestAnimationFrame(func)
@@ -64,7 +68,7 @@ class Boss{
     div.innerHTML = Boss.renderBoss();
     document.getElementById('game').appendChild(div);
     const audioDiv = document.createElement('div');
-    audioDiv.innerHTML = '<audio  src="/Users/joshwasserman/Development/FingerQuest-project/Finger-Quest-Frontend/src/fingerquestmusic.mp3" autoplay></audio>';
+    audioDiv.innerHTML = '<audio id="hotline" src="/Users/joshwasserman/Development/FingerQuest-project/Finger-Quest-Frontend/src/fingerquestmusic.mp3" autoplay></audio>';
     document.getElementById('game').appendChild(audioDiv);
 
     Boss.moveBoss()

@@ -1,4 +1,4 @@
-
+LEVEL = 1
 class Game {
 
   static checkInput(){
@@ -17,16 +17,24 @@ class Game {
   }
 
   static endGame(){
+    BOSSBULLETINTERVALS.forEach(function(interval){
+      clearInterval(interval)
+    })
+
+    BOSSINTERVALS.forEach(function(interval){
+      clearInterval(interval)
+    })
+    BOSSINTERVALS.length = 0
     Player.score = (Player.health + Player.ammo) - (Boss.health);
     if (Player.status === "loss") {
       document.getElementById('game').innerHTML = Game.lossRender();
     } else {
       document.getElementById('game').innerHTML = Game.winRender();
     }
-    document.querySelector('audio').remove()
     const button = document.getElementById('submit');
     button.addEventListener("click", e => {
       e.preventDefault();
+      debugger
       const username = document.getElementById('username').value;
       const jsonBody = {name: username, score: Player.score }
       Adapter.findCreate(jsonBody);

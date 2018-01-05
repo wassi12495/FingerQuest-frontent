@@ -1,6 +1,7 @@
 BOSSBULLETWIDTH = '30px';
 BOSSBULLETHEIGHT = '30px';
 BOSSBULLETARRAY = []
+BOSSBULLETINTERVALS = []
 class BossBullet {
 
   static createBossBulletDiv(){
@@ -29,6 +30,7 @@ class BossBullet {
       BossBullet.checkCollision(bossBullet, bossBulletInterval);
     }
     let bossBulletInterval = setInterval(moveBossBulletDown, 100)
+    BOSSBULLETINTERVALS.push(bossBulletInterval)
   }
 
   static checkCollision(bossBullet, bossBulletInterval){
