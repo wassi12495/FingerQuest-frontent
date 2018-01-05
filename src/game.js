@@ -41,7 +41,7 @@ class Game {
 
   static transitionScreen(){
     let game = document.getElementById("game")
-    Player.score += 3
+    Player.score += 10
     Boss.health = 3
     game.innerHTML = ""
     game.innerHTML = Game.renderTransitionScreen()
@@ -100,7 +100,7 @@ class Game {
     if (Player.status === "loss") {
       document.getElementById('game').innerHTML = Game.lossRender();
     } else {
-      Player.score += 3;
+      Player.score += 10;
       document.getElementById('game').innerHTML = Game.winRender();
     }
     const button = document.getElementById('submit');

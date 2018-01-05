@@ -41,10 +41,10 @@ class Player{
       Bullet.createBulletDiv();
       Player.ammo--
       document.getElementById('player-ammo').innerHTML = `${Player.ammo}`;
-    } else if (Player.ammo === 0 && Boss.health > 0){
+    } else if (Player.ammo === 0 && Boss.health > 1){
       Player.status = "loss";
       Game.endGame()
-    }
+    } 
 
 
   }
