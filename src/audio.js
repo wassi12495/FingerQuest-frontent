@@ -8,7 +8,7 @@ class Audio {
       case 1:
         Audio.playSound(url)
         break;
-      
+
 
     }
   }
@@ -16,7 +16,7 @@ class Audio {
   static playSound(url){
     document.getElementById('game').appendChild(div);
     const audioDiv = document.createElement('div');
-    audioDiv.innerHTML = `<audio id="hotline" src="/Users/joshwasserman/Development/FingerQuest-project/Finger-Quest-Frontend/src/fingerquestmusic.mp3" autoplay></audio>`;
+    audioDiv.innerHTML = `<audio id="hotline" src="git@github.com:wassi12495/FingerQuest-frontent.git" autoplay></audio>`;
     document.getElementById('game').appendChild(audioDiv);
 
 
